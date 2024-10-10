@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8f10dbb-1198-4ef7-9e22-5f20d2e58745" name="Changes" comment="" />
+    <list default="true" id="b8f10dbb-1198-4ef7-9e22-5f20d2e58745" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/game.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/console.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/console.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/game.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/game.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/review.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/review.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/review.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/review.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/error/NotFoundError.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/error/NotFoundError.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/game.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/game.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/review.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/review.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/console.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/console.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/game.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/review.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/review.service.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,9 +28,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2nFLZWQNR2cxttrlJDqlMd9eQrY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -20,10 +38,21 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Node.js.game.controller.ts.executor": "Run",
+    "Node.js.game.model.ts.executor": "Run",
+    "Node.js.review.dto.ts.executor": "Run",
+    "Node.js.review.service.ts.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/broun/Documents/js/api-review-game",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -43,6 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728563933877</updated>
       <workItem from="1728563935249" duration="29000" />
+      <workItem from="1728563970330" duration="8637000" />
     </task>
     <servers />
   </component>

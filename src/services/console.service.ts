@@ -1,4 +1,8 @@
 import { Console } from "../models/console.model";
+import { Game } from "../models/game.model";
+import { Review } from "../models/review.model";
+import {NotFoundError} from "../error/NotFoundError";
+import {GameDTO} from "../dto/game.dto";
 
 export class ConsoleService {
 
@@ -14,25 +18,59 @@ export class ConsoleService {
 
   // Crée une nouvelle console
   public async createConsole(
-    name: string,
-    manufacturer: string
+      name: string,
+      manufacturer: string
   ): Promise<Console> {
-    return Console.create({ id: -1, name: name, manufacturer: manufacturer });
+    return Console.create({ name, manufacturer });
   }
 
   // Supprime une console par ID
   public async deleteConsole(id: number): Promise<void> {
+    const reviews = await Review.findOne({
+      include: [{
+        model: Game,
+        as: "game",
+        where: { console_id: id }
+      }]
+    });
+
+    if (reviews) {
+      throw new Error(`Cannot delete console with ID ${id} as it has associated reviews.`);
+    }
+
     const console = await Console.findByPk(id);
     if (console) {
-      console.destroy();
+      await console.destroy();
     }
   }
 
-  // Met à jour une console
+  public async getGamesByConsoleId(consoleId: number): Promise<GameDTO[]> {
+    const console = await Console.findByPk(consoleId);
+
+    if (!console) {
+      throw new NotFoundError(`Console avec l'ID ${consoleId} non trouvée`);
+    }
+
+    const games = await Game.findAll({
+      where: { console_id: consoleId }
+    });
+
+    return games.map((game) => ({
+      id: game.id,
+      title: game.title,
+      console: {
+        id: console.id,
+        name: console.name,
+        manufacturer: console.manufacturer,
+      },
+    }));
+  }
+
+  // Met à jour une console par ID
   public async updateConsole(
-    id: number,
-    name?: string,
-    manufacturer?: string
+      id: number,
+      name?: string,
+      manufacturer?: string
   ): Promise<Console | null> {
     const console = await Console.findByPk(id);
     if (console) {
