@@ -1,7 +1,7 @@
-import { ReviewDTO, CreateReviewDTO, UpdateReviewDTO } from "../dto/review.dto";
+import { ReviewDTO, UpdateReviewDTO } from "../dto/review.dto";
 import { Review } from "../models/review.model";
 import { Game } from "../models/game.model";
-import { NotFoundError } from "../error/NotFoundError";
+import {notFound, NotFoundError} from "../error/NotFoundError";
 
 class ReviewService {
     public async getReviews(): Promise<ReviewDTO[]> {
@@ -38,7 +38,7 @@ class ReviewService {
         });
 
         if (!review) {
-            throw new NotFoundError(`Review with ID ${id} not found`);
+            notFound(`Review with ID ${id}`);
         }
 
         return {
@@ -58,7 +58,7 @@ class ReviewService {
         const existingGame = await Game.findByPk(gameId);
 
         if (!existingGame) {
-            throw new NotFoundError(`Game with ID ${gameId} not found`);
+            notFound(`Game with ID ${gameId}`);
         }
 
         const newReview = await Review.create({ review_text, rating, game_id: gameId });
@@ -79,7 +79,7 @@ class ReviewService {
     public async deleteReview(id: number): Promise<void> {
         const review = await Review.findByPk(id);
         if (!review) {
-            throw new NotFoundError(`Review with ID ${id} not found`);
+            notFound(`Review with ID ${id}`);
         }
 
         await review.destroy();
@@ -89,7 +89,7 @@ class ReviewService {
         const review = await Review.findByPk(id);
 
         if (!review) {
-            throw new NotFoundError(`Review with ID ${id} not found`);
+            notFound(`Review with ID ${id}`);
         }
 
         if (updatedAttributes.review_text !== undefined) {
@@ -101,7 +101,7 @@ class ReviewService {
         if (updatedAttributes.game_id !== undefined) {
             const existingGame = await Game.findByPk(updatedAttributes.game_id);
             if (!existingGame) {
-                throw new NotFoundError(`Game with ID ${updatedAttributes.game_id} not found`);
+                notFound(`Game with ID ${updatedAttributes.game_id}`);
             }
             review.game_id = updatedAttributes.game_id;
         }
@@ -118,7 +118,7 @@ class ReviewService {
         });
 
         if (!updatedReview) {
-            throw new NotFoundError(`Updated review with ID ${id} not found`);
+            notFound(`Updated review with ID ${id}`);
         }
 
         return {

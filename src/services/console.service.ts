@@ -1,7 +1,7 @@
 import { Console } from "../models/console.model";
 import { Game } from "../models/game.model";
 import { Review } from "../models/review.model";
-import {NotFoundError} from "../error/NotFoundError";
+import {notFound, NotFoundError} from "../error/NotFoundError";
 import {GameDTO} from "../dto/game.dto";
 
 export class ConsoleService {
@@ -35,7 +35,7 @@ export class ConsoleService {
     });
 
     if (reviews) {
-      throw new Error(`Cannot delete console with ID ${id} as it has associated reviews.`);
+      throw new NotFoundError(`Cannot delete console with ID ${id} as it has associated reviews.`);
     }
 
     const console = await Console.findByPk(id);
@@ -48,7 +48,7 @@ export class ConsoleService {
     const console = await Console.findByPk(consoleId);
 
     if (!console) {
-      throw new NotFoundError(`Console avec l'ID ${consoleId} non trouvée`);
+      notFound(`Console with ID ${consoleId}`);
     }
 
     const games = await Game.findAll({
@@ -66,7 +66,6 @@ export class ConsoleService {
     }));
   }
 
-  // Met à jour une console par ID
   public async updateConsole(
       id: number,
       name?: string,

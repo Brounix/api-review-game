@@ -1,7 +1,7 @@
 import { GameDTO } from "../dto/game.dto";
 import { Console } from "../models/console.model";
 import { Game } from "../models/game.model";
-import { NotFoundError } from "../error/NotFoundError";
+import {notFound, NotFoundError} from "../error/NotFoundError";
 import {Review} from "../models/review.model";
 import {ReviewDTO} from "../dto/review.dto";
 
@@ -32,7 +32,7 @@ export class GameService {
     const existingConsole = await Console.findByPk(consoleId);
 
     if (!existingConsole) {
-      throw new NotFoundError(`Console with ID ${consoleId} not found`);
+      notFound(`Console with ID ${consoleId}`);
     }
 
     const newGame = await Game.create({ title, console_id: consoleId });
@@ -49,14 +49,14 @@ export class GameService {
     });
 
     if (review) {
-      throw new Error(`Cannot delete game with ID ${id} as it has associated reviews.`);
+      throw new NotFoundError(`Cannot delete game with ID ${id} as it has associated reviews.`);
     }
 
     const game = await Game.findByPk(id);
     if (game) {
       await game.destroy();
     } else {
-      throw new NotFoundError(`Game with ID ${id} not found`);
+      notFound(`Game with ID ${id}`);
     }
   }
 
@@ -71,13 +71,13 @@ export class GameService {
     });
 
     if (!game) {
-      throw new NotFoundError(`Game with ID ${id} not found`);
+      notFound(`Game with ID ${id}`);
     }
 
     if (consoleId) {
       const existingConsole = await Console.findByPk(consoleId);
       if (!existingConsole) {
-        throw new NotFoundError(`Console with ID ${consoleId} not found`);
+        notFound(`Console with ID ${consoleId}`);
       }
       game.console_id = consoleId;
     }
@@ -98,7 +98,7 @@ export class GameService {
     });
 
     if (!updatedGame) {
-      throw new NotFoundError(`Updated game with ID ${id} not found`);
+      notFound(`Updated game with ID ${id}`);
     }
 
     return {
@@ -116,7 +116,7 @@ export class GameService {
     const game = await Game.findByPk(gameId);
 
     if (!game) {
-      throw new NotFoundError(`Jeu avec l'ID ${gameId} non trouvé`);
+      notFound(`Game with ID ${gameId}`);
     }
 
     const reviews = await Review.findAll({

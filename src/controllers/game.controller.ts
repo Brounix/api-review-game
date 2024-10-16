@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Patch, Path, Post, Route, Delete, Tags } from "tsoa";
 import { GameDTO } from "../dto/game.dto";
 import { gameService } from "../services/game.service";
-import { NotFoundError } from "../error/NotFoundError";
+import {notFound, NotFoundError} from "../error/NotFoundError";
 import {ReviewDTO} from "../dto/review.dto";
 
 @Route("games")
@@ -16,8 +16,7 @@ export class GameController extends Controller {
   public async getGameById(@Path() id: number): Promise<GameDTO> {
     const game = await gameService.getGameById(id);
     if (!game) {
-      this.setStatus(404);
-      throw new NotFoundError(`Game with ID ${id} not found`);
+      notFound(`Game with ID ${id}`);
     }
     return game;
   }
@@ -27,7 +26,7 @@ export class GameController extends Controller {
     const { title, console } = requestBody;
     if (!console || !console.id) {
       this.setStatus(400);
-      throw new Error("Console ID is required to create a game");
+      throw new NotFoundError("Console ID is required to create a game");
     }
 
     const newGame = await gameService.createGame(title, console.id);
@@ -61,7 +60,7 @@ export class GameController extends Controller {
       this.setStatus(200);
     } catch (error) {
       this.setStatus(400);
-      throw new Error(`Error deleting game: ${error}`);
+      throw new NotFoundError(`Error deleting game: ${error}`);
     }
   }
 

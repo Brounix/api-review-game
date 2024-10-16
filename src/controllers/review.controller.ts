@@ -1,7 +1,7 @@
 import {Body, Controller, Delete, Get, Patch, Path, Post, Route, Tags} from "tsoa";
 import { ReviewDTO, CreateReviewDTO, UpdateReviewDTO } from "../dto/review.dto";
 import { reviewService } from "../services/review.service";
-import { NotFoundError } from "../error/NotFoundError";
+import { notFound, NotFoundError } from "../error/NotFoundError";
 
 @Route("reviews")
 @Tags("Reviews")
@@ -15,8 +15,7 @@ export class ReviewController extends Controller {
     public async getReviewById(@Path() id: number): Promise<ReviewDTO> {
         const review = await reviewService.getReviewById(id);
         if (!review) {
-            this.setStatus(404);
-            throw new NotFoundError(`Review with ID ${id} not found`);
+            notFound(`Review with ID ${id}`);
         }
         return review;
     }
@@ -29,7 +28,11 @@ export class ReviewController extends Controller {
 
     @Patch("{id}")
     public async updateReview(@Path() id: number, @Body() requestBody: UpdateReviewDTO): Promise<ReviewDTO> {
-        return await reviewService.updateReview(id, requestBody);
+        const review = await reviewService.updateReview(id, requestBody);
+        if (!review) {
+            notFound(`Review with ID ${id}`);
+        }
+        return review;
     }
 
     @Delete("{id}")
@@ -38,8 +41,8 @@ export class ReviewController extends Controller {
             await reviewService.deleteReview(id);
             this.setStatus(200);
         } catch (error) {
-            this.setStatus(404);
-            throw new Error(`Error deleting review: ${error}`);
+            this.setStatus(400);
+            throw new NotFoundError(`Error deleting review with ID ${id}`);
         }
     }
 }

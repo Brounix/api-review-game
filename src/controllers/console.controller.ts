@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Delete, Route, Path, Body, Tags, Patch } from "tsoa";
-import { consoleService } from "../services/console.service";
-import { ConsoleDTO } from "../dto/console.dto";
-import {NotFoundError} from "../error/NotFoundError";
+import {Body, Controller, Delete, Get, Patch, Path, Post, Route, Tags} from "tsoa";
+import {consoleService} from "../services/console.service";
+import {ConsoleDTO} from "../dto/console.dto";
+import {notFound, NotFoundError} from "../error/NotFoundError";
 import {GameDTO} from "../dto/game.dto";
 
 @Route("consoles")
@@ -18,8 +18,7 @@ export class ConsoleController extends Controller {
   public async getConsoleById(@Path() id: number): Promise<ConsoleDTO> {
     const console = await consoleService.getConsoleById(id);
     if (!console) {
-      this.setStatus(404); // set status 404
-      throw new Error(`Console with ID ${id} not found`);
+      notFound(`Console with ID ${id}`);
     }
     return console;
   }
@@ -35,12 +34,7 @@ export class ConsoleController extends Controller {
 
   @Get("{id}/games")
   public async getGamesByConsoleId(@Path() id: number): Promise<GameDTO[]> {
-    const games = await consoleService.getGamesByConsoleId(id);
-    if (!games || games.length === 0) {
-      this.setStatus(404);
-      throw new NotFoundError(`Aucun jeu trouvé pour la console avec l'ID ${id}`);
-    }
-    return games;
+    return await consoleService.getGamesByConsoleId(id);
   }
 
   // Supprime une console par ID
@@ -51,7 +45,7 @@ export class ConsoleController extends Controller {
       this.setStatus(200);
     } catch (error) {
       this.setStatus(400);
-      throw new Error(`Error deleting console: ${error}`);
+      throw new NotFoundError(`${error}`);
     }
   }
 
@@ -64,8 +58,7 @@ export class ConsoleController extends Controller {
     const { name, manufacturer } = requestBody;
     const updatedConsole = await consoleService.updateConsole(id, name, manufacturer);
     if (!updatedConsole) {
-      this.setStatus(404);
-      throw new Error(`Console with ID ${id} not found`);
+      notFound(`Console with ID ${id}`);
     }
     return updatedConsole;
   }
