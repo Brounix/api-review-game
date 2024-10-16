@@ -60,7 +60,7 @@ export class GameController extends Controller {
       this.setStatus(200);
     } catch (error) {
       this.setStatus(400);
-      throw new NotFoundError(`Error deleting game: ${error}`);
+      throw new NotFoundError(`${error}`);
     }
   }
 
@@ -68,8 +68,7 @@ export class GameController extends Controller {
   public async getReviewsByGameId(@Path() id: number): Promise<ReviewDTO[]> {
     const reviews = await gameService.getReviewsByGameId(id);
     if (!reviews || reviews.length === 0) {
-      this.setStatus(404);
-      throw new NotFoundError(`Aucun avis trouvé pour le jeu avec l'ID ${id}`);
+      notFound(`Review for the game ${id}`);
     }
     return reviews;
   }

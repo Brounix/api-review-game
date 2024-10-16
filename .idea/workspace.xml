@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8f10dbb-1198-4ef7-9e22-5f20d2e58745" name="Changes" comment="jour 1">
+    <list default="true" id="b8f10dbb-1198-4ef7-9e22-5f20d2e58745" name="Changes" comment="jour 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/game.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/console.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/console.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/game.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/game.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/review.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/review.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/console.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/console.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/game.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/review.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/review.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +61,7 @@
       <updated>1728563933877</updated>
       <workItem from="1728563935249" duration="29000" />
       <workItem from="1728563970330" duration="9786000" />
-      <workItem from="1729079327570" duration="3323000" />
+      <workItem from="1729079327570" duration="9430000" />
     </task>
     <task id="LOCAL-00001" summary="jour 1">
       <option name="closed" value="true" />
@@ -77,7 +71,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728574148471</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="jour 2">
+      <option name="closed" value="true" />
+      <created>1729082831424</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729082831424</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,6 +87,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="jour 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="jour 1" />
+    <MESSAGE value="jour 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="jour 2" />
   </component>
 </project>
